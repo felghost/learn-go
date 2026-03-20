@@ -3,15 +3,51 @@ package main
 import (
     "bufio"
     "fmt"
+		"strings"
     "os"
     "time"
 )
 
 func main() {
-    reader := bufio.NewReader(os.Stdin)
+    fmt.Println("1. Start New Task")
+    fmt.Println("2. View Summary")
+    fmt.Print("Choose an option: ")
+
+    var choice int
+    fmt.Scanln(&choice) // This expects a number
+
+    if choice == 1 {
+        runTimer() // Tip: You can move your timer code into its own function!
+    } else if choice == 2 {
+        showSummary()
+    } else {
+        fmt.Println("Invalid choice.")
+    }
+}
+
+func showSummary() {
+    file, err := os.Open("log.txt")
+    if err != nil {
+        fmt.Println("No logs found yet!")
+        return
+    }
+    defer file.Close()
+
+    fmt.Println("\n--- YOUR LOGS ---")
+    scanner := bufio.NewScanner(file)
+    for scanner.Scan() { // This loop runs for every line in the file
+        fmt.Println(scanner.Text())
+    }
+}
+
+func runTimer() {
+		reader := bufio.NewReader(os.Stdin)
 
     fmt.Print("What task are you starting? ")
-    taskName, _ := reader.ReadString('\n')
+
+		// Inside your main function, after reading taskName:
+		taskName, _ := reader.ReadString('\n')
+		taskName = strings.TrimSpace(taskName) // This removes the hidden "Enter" character
 
     start := time.Now()
     fmt.Println("Timer started. Press ENTER to stop...")
