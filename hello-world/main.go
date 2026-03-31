@@ -17,3 +17,8 @@ func main() {
 // to the console.
 
 // An executable package must have a main function, and the main function must be in the main package.
+
+// The fmt package is part of the Go standard library and provides functions for formatting and printing text.
+// Documentation for the standard libraries can be found at https://golang.org/pkg
+
+// main.go is formatted following the pattern: package, imports, and then the main function.
