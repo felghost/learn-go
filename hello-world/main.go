@@ -15,3 +15,5 @@ func main() {
 // The main function is the entry point of the program, where the execution starts. 
 // The fmt package is imported to use the Println function, which prints the string "Hello, World!" 
 // to the console.
+
+// An executable package must have a main function, and the main function must be in the main package.
